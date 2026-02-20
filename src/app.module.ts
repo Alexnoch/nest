@@ -4,6 +4,8 @@ import { AppService } from './app.service';
 import { EntitiesModule } from './entities/entities.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { MyEntity } from './entities/entities/entity.entity';
+import { AttributesModule } from './attributes/attributes.module';
+import { Attribute } from './attributes/entities/attribute.entity';
 
 @Module({
   imports: [
@@ -15,11 +17,12 @@ import { MyEntity } from './entities/entities/entity.entity';
       password: 'mypassword',
       database: 'mydatabase',
       schema:'kb',
-      entities: [MyEntity],
+      entities: [MyEntity, Attribute],
       synchronize: true,
       logging: true,
     }),
-    EntitiesModule, // ← ВСЕ В ОДНОМ МОДУЛЕ
+    EntitiesModule,
+    AttributesModule, // ← ВСЕ В ОДНОМ МОДУЛЕ
   ],
   controllers: [AppController],
   providers: [AppService],
